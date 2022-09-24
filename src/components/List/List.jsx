@@ -9,6 +9,8 @@ import {
   Select,
 } from "@material-ui/core";
 
+import PlaceDetails from "../PlaceDetails/PlaceDetails";
+
 import useStyles from "./styles";
 
 const List = () => {
@@ -17,6 +19,12 @@ const List = () => {
   const [rating, setRating] = useState("");
 
   const places = [
+    { name: "Nice Place" },
+    { name: "Best Drinks" },
+    { name: "Best Meat" },
+    { name: "Nice Place" },
+    { name: "Best Drinks" },
+    { name: "Best Meat" },
     { name: "Nice Place" },
     { name: "Best Drinks" },
     { name: "Best Meat" },
@@ -48,7 +56,11 @@ const List = () => {
         </FormControl>
         <Grid container spacing={3} className={classes.list}>
           {/* if there are places, map over them */}
-          {places?.map((place, i) => {})}
+          {places?.map((place, i) => (
+            <Grid item key={i} xs={12}>
+              <PlaceDetails place={place} />
+            </Grid>
+          ))}
         </Grid>
       </Typography>
     </div>
