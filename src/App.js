@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 // material-ui imports
 import { CssBaseline, Grid } from "@material-ui/core";
+
+import { getPlacesData } from "./api";
 
 // react components
 import Header from "./components/Header/Header";
