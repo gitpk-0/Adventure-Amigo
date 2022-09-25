@@ -8,9 +8,13 @@ import {
   CardContent,
   CardActions,
   Chip,
+  Grid,
 } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import PhoneIcon from "@material-ui/icons/Phone";
+import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
+import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
+import DirectionsBusIcon from "@material-ui/icons/DirectionsBus";
 import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
@@ -34,25 +38,44 @@ const PlaceDetails = ({ place }) => {
       />
       <CardContent>
         {/* place name section */}
-        <Typography gutterBottom variant="h5">
-          {place.name}
-        </Typography>
+        <Box display="flex" justifyContent="space-between">
+          <Typography gutterBottom variant="h5">
+            {place.name}
+          </Typography>
+          <Typography>
+            {/* open_now_text */}
+            {place?.open_now_text && (
+              <Chip
+                key={place.open_now_text}
+                size="small"
+                color="primary"
+                // style={{ backgroundColor: "green" }}
+                label={place.open_now_text}
+                className={classes.chip}
+              />
+            )}
+          </Typography>
+        </Box>
 
         {/* place price section */}
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="subtitle1">Price</Typography>
-          <Typography gutterBottom variant="subtitle1">
-            {place.price_level}
-          </Typography>
-        </Box>
+        {place?.price_level && (
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="subtitle1">Price</Typography>
+            <Typography gutterBottom variant="subtitle1">
+              {place.price_level}
+            </Typography>
+          </Box>
+        )}
 
         {/* place ranking section */}
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="subtitle1">Ranking</Typography>
-          <Typography gutterBottom variant="subtitle1">
-            {place.ranking}
-          </Typography>
-        </Box>
+        {place?.ranking && (
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="subtitle1">Ranking</Typography>
+            <Typography gutterBottom variant="subtitle1">
+              {place.ranking}
+            </Typography>
+          </Box>
+        )}
 
         {/* place awards section */}
         {place?.awards?.map((award) => (
@@ -100,41 +123,42 @@ const PlaceDetails = ({ place }) => {
           </Typography>
         )}
 
-        <CardActions>
-          {/* place trip advisor link */}
-          <Button
-            size="small"
-            color="primary"
-            // will open in a new tab
-            onClick={() => window.open(place.web_url, "_blank")}
+        {/* distance_string (distance away) */}
+        {place?.phone && (
+          <Typography
+            gutterbottom
+            variant="subtitle2"
+            color="textSecondary"
+            className={classes.spacing}
           >
-            Trip Advisor
-          </Button>
-          {/* places website link */}
-          <Button
-            size="small"
-            color="primary"
-            // will open in a new tab
-            onClick={() => window.open(place.website, "_blank")}
-          >
-            Website
-          </Button>
-        </CardActions>
-
-        {/* open_now_text */}
-
-        {place?.open_now_text && (
-          <Chip
-            key={place.open_now_text}
-            size="small"
-            color="primary"
-            style={{ backgroundColor: "green" }}
-            label={place.open_now_text}
-            className={classes.chip}
-          />
+            <DirectionsCarIcon />
+            <DirectionsBikeIcon />
+            <DirectionsBusIcon /> {place.distance_string} away
+          </Typography>
         )}
 
-        {/* distance_string (distance away) */}
+        <CardActions>
+          <Box display="flex" justifyContent="space-between">
+            {/* place trip advisor link */}
+            <Button
+              size="medium"
+              color="primary"
+              // will open in a new tab
+              onClick={() => window.open(place.web_url, "_blank")}
+            >
+              Trip Advisor
+            </Button>
+            {/* places website link */}
+            <Button
+              size="medium"
+              color="primary"
+              // will open in a new tab
+              onClick={() => window.open(place.website, "_blank")}
+            >
+              Website
+            </Button>
+          </Box>
+        </CardActions>
       </CardContent>
     </Card>
   );
