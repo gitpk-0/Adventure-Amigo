@@ -42,7 +42,7 @@ const App = () => {
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
           {/* xs12 = full width on mobile, medium and larger devices = 4 spaces */}
-          <List />
+          <List places={places} />
         </Grid>
         <Grid item xs={12} md={4}>
           {/* xs12 = full width on mobile, medium and larger devices = 4 spaces */}
