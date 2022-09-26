@@ -68,9 +68,7 @@ const List = ({
             <Select value={rating} onChange={(e) => setRating(e.target.value)}>
               <MenuItem value={0}>All</MenuItem>
               <MenuItem value={3}>3+ Stars</MenuItem>
-              <MenuItem value={3.5}>3.5+ Stars</MenuItem>
               <MenuItem value={4}>4+ Stars</MenuItem>
-              <MenuItem value={4.5}>4.5+ Stars</MenuItem>
             </Select>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>

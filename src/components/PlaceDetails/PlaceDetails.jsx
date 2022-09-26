@@ -18,18 +18,15 @@ import DirectionsBusIcon from "@material-ui/icons/DirectionsBus";
 import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
-import "./img/eat.jpg";
-// 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 
-const kmRatio = 0.62137119;
+// default photo
+// 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 
 const PlaceDetails = ({ place, selected, refProp }) => {
   if (selected)
     refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const classes = useStyles();
-
-  const distance = place.distance_string;
 
   return (
     <Card elevation={6}>

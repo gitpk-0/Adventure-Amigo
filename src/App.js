@@ -11,6 +11,7 @@ import Map from "./components/Map/Map";
 
 const App = () => {
   const [places, setPlaces] = useState([]);
+  const [filteredPlaces, setfilteredPlaces] = useState([]);
   const [childClicked, setChildClicked] = useState(null);
 
   const [coordinates, setCoordinates] = useState({});
@@ -21,6 +22,7 @@ const App = () => {
   const [rating, setRating] = useState("");
 
   // useEffect to get users current coordinates
+  //// only runs on initial page load
   useEffect(() => {
     // using built in browser geolocation api
     navigator.geolocation.getCurrentPosition(
@@ -32,12 +34,23 @@ const App = () => {
     );
   }, []);
 
+  // useEffect to allow filtering by rating
+  //// runs when the rating filter is changed
+  useEffect(() => {
+    // if place.rating is larger than current rating return those places
+    const filteredPlaces = places.filter((place) => place.rating > rating);
+
+    setfilteredPlaces(filteredPlaces);
+  }, [rating]);
+
+  // runs when type, coordinates, or bounds change
   useEffect(() => {
     setIsLoading(true);
+
     getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
-      // console.log("bounds data");
       // console.log(data);
       setPlaces(data);
+      setfilteredPlaces([]); // filteredPlaces reset when params change
       setIsLoading(false);
     });
   }, [type, coordinates, bounds]);
@@ -50,7 +63,8 @@ const App = () => {
         <Grid item xs={12} md={4}>
           {/* xs12 = full width on mobile, medium and larger devices = 4 spaces */}
           <List
-            places={places}
+            // if we have filteredPlaces render filteredPlaces else render all places
+            places={filteredPlaces.length ? filteredPlaces : places}
             childClicked={childClicked}
             isLoading={isLoading}
             type={type}
@@ -65,7 +79,8 @@ const App = () => {
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}
-            places={places}
+            // if we have filteredPlaces render filteredPlaces else render all places
+            places={filteredPlaces.length ? filteredPlaces : places}
             setChildClicked={setChildClicked}
           />
         </Grid>
