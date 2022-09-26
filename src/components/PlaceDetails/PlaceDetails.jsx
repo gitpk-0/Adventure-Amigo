@@ -144,7 +144,8 @@ const PlaceDetails = ({ place, selected, refProp }) => {
           >
             <DirectionsCarIcon />
             <DirectionsBikeIcon />
-            <DirectionsBusIcon /> {place.distance_string} away
+            <DirectionsBusIcon />
+            {Number(place.distance_string[0]) * 0.62} miles away
           </Typography>
         )}
 
