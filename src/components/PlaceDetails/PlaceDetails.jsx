@@ -21,11 +21,15 @@ import useStyles from "./styles";
 import "./img/eat.jpg";
 // 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 
+const kmRatio = 0.62137119;
+
 const PlaceDetails = ({ place, selected, refProp }) => {
   if (selected)
     refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   const classes = useStyles();
+
+  const distance = place.distance_string;
 
   return (
     <Card elevation={6}>
@@ -145,7 +149,10 @@ const PlaceDetails = ({ place, selected, refProp }) => {
             <DirectionsCarIcon />
             <DirectionsBikeIcon />
             <DirectionsBusIcon />
-            {Number(place.distance_string[0]) * 0.62} miles away
+            {(Number(place.distance_string.split(" ")[0]) * 0.62).toFixed(
+              1
+            )}{" "}
+            miles away
           </Typography>
         )}
 
