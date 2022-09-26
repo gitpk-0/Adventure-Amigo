@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // material-ui imports
 import { CssBaseline, Grid } from "@material-ui/core";
 
-import { getPlacesData } from "./api/travelGoAPI";
+import { getPlacesData } from "./api/adventureGuideAPI";
 
 // react components
 import Header from "./components/Header/Header";
@@ -58,7 +58,7 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Header />
+      <Header setCoordinates={setCoordinates} />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
           {/* xs12 = full width on mobile, medium and larger devices = 4 spaces */}

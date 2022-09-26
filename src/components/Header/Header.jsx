@@ -1,34 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { Autocomplete } from "@react-google-maps/api";
 import { AppBar, Toolbar, Typography, InputBase, Box } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 import useStyles from "./styles";
 
-const Header = () => {
+const Header = ({ setCoordinates }) => {
   const classes = useStyles(); // calling the useStyles hook
+
+  // initializing a new state field
+  const [autocomplete, setAutocomplete] = useState(null);
+
+  const onLoad = (autoC) => setAutocomplete(autoC);
+
+  const onPlaceChanged = () => {
+    // from google maps documentation
+    const lat = autocomplete.getPlace().geometry.location.lat(); // latitude
+    const lng = autocomplete.getPlace().geometry.location.lng(); // longitude
+
+    setCoordinates({ lat, lng });
+  };
+
   return (
     // nav bar layout
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h5" className={classes.title}>
-          TravelGo
+          Adventure Amigo
         </Typography>
         <Box display="flex">
           <Typography variant="h6" className={classes.title}>
             Start your next adventure
           </Typography>
-          {/* <Autocomplete onLoad={} onPlaceChanged> */}
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search... "
+                classes={{ root: classes.inputRoot, input: classes.inputInput }}
+              />
             </div>
-            <InputBase
-              placeholder="Search... "
-              classes={{ root: classes.inputRoot, input: classes.inputInput }}
-            />
-          </div>
-          {/* </Autocomplete> */}
+          </Autocomplete>
         </Box>
       </Toolbar>
     </AppBar>
