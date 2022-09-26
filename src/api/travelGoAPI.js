@@ -26,7 +26,7 @@ export const getPlacesData = async (sw, ne) => {
     return data;
   } catch (error) {
     // if request fails
-    console.log("bounds error");
+    // console.log("bounds error");
     console.log(error);
   }
 };

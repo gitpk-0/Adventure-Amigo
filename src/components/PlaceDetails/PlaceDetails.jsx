@@ -21,7 +21,10 @@ import useStyles from "./styles";
 import "./img/eat.jpg";
 // 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 
-const PlaceDetails = ({ place }) => {
+const PlaceDetails = ({ place, selected, refProp }) => {
+  if (selected)
+    refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
   const classes = useStyles();
 
   return (
@@ -54,6 +57,14 @@ const PlaceDetails = ({ place }) => {
                 className={classes.chip}
               />
             )}
+          </Typography>
+        </Box>
+
+        {/* place rating section */}
+        <Box display="flex" justifyContent="space-between">
+          <Rating value={Number(place.rating)} readOnly />
+          <Typography gutterBottom variant="subtitle1">
+            out of {place.num_reviews} reviews
           </Typography>
         </Box>
 
