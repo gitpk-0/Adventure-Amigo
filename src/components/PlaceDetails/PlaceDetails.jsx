@@ -19,6 +19,7 @@ import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
 
+<meta name="viewport" content="width=device-width, initial-scale=1" />;
 // default photo
 // 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
 

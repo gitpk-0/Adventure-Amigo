@@ -31,3 +31,17 @@ export const getPlacesData = async (type, sw, ne) => {
     console.log(error);
   }
 };
+
+export const getWeatherData = async (lat, lng) => {
+  try {
+    let latt = lat.toFixed(2);
+    let long = lng.toFixed(2);
+    const apiKey = "baa163b0c95b6696f3c24313452bd64e";
+    const { data } = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latt}&lon=${long}&appid=${apiKey}`
+    );
+    console.log(data.weather[0].icon);
+
+    return data;
+  } catch (error) {}
+};
