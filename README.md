@@ -6,5 +6,7 @@ What it's built with:
 - ReactJS
 - Material UI
 - Google Maps API
+- Open Weather API
+- Rapid API
 
 [Click here to start your next adventure!](https://adventure-amigo.netlify.app)
