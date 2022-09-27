@@ -1,12 +1,5 @@
 # Adventure Amigo
 
-What it's built with:
-
-- JavaScript
-- ReactJS
-- Material UI
-- Google Maps API
-- Open Weather Map API
-- Rapid API
+Find restaurants, hotels, and attractions for your next adventure!
 
 [Click here to start your next adventure!](https://adventure-amigo.netlify.app)
