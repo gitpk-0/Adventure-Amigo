@@ -20,12 +20,15 @@ const Map = ({
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyAQ3awINfo2huvnjhYbccZtCKzrdxtqhAc" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
-        options={""}
+        options={{
+          disableDefaultUI: true,
+          zoomControl: true,
+        }}
         onChange={(e) => {
           // console.log(e);
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
@@ -33,7 +36,7 @@ const Map = ({
         }}
         onChildClick={(child) => setChildClicked(child)} // make places clickable on the map
       >
-        {/* dynamic block */}
+        {/* dynamic jsx block */}
         {places?.map((place, i) => (
           <div
             className={classes.markerContainer}
@@ -66,11 +69,13 @@ const Map = ({
             )}
           </div>
         ))}
+
+        {/* weather icons jsx block -- in progress */}
         {weatherData?.list?.map((data, i) => (
           <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
             <img
-              height="250px"
-              src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`}
+              src={`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`}
+              height={75}
               alt=""
             />
           </div>
