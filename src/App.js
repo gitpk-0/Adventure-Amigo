@@ -59,10 +59,11 @@ const App = () => {
         // console.log(data);
         setPlaces(data?.filter((place) => place.name && place.num_reviews > 0)); // filter out places without a name or zero reviews
         setfilteredPlaces([]); // filteredPlaces reset when params change
+        setRating(""); // reset ratings filter when params change
         setIsLoading(false);
       });
     }
-  }, [type, bounds]);
+  }, [bounds, type]);
 
   // console.log(places);
   // console.log(filteredPlaces);

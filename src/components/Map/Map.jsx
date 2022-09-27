@@ -69,7 +69,7 @@ const Map = ({
         {weatherData?.list?.map((data, i) => (
           <div key={i} lat={data.coord.lat} lng={data.coord.lon}>
             <img
-              height={250}
+              height="250px"
               src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`}
               alt=""
             />

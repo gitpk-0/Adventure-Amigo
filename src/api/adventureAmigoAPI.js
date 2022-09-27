@@ -18,7 +18,7 @@ export const getPlacesData = async (type, sw, ne) => {
         },
         headers: {
           "X-RapidAPI-Key":
-            "fc9de4c79dmshd1eb046316c8cb8p1c01f1jsnab6ba0f6c796",
+            "e404f09c61msh3995674732fea40p151e88jsn1130448610d2",
           "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
         },
       }
@@ -41,7 +41,10 @@ export const getWeatherData = async (lat, lng) => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${latt}&lon=${long}&appid=${apiKey}`
     );
     console.log(data.weather[0].icon);
+    console.log(`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
 
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
